@@ -28,44 +28,6 @@ models:
           - name: circuit_url
             description: '{{ doc("circuit_url_def") }}'
 
-    - name: fct_constructor_results
-      description: "Fact data related to constructor (ie brand) results. This is at a race level but race info isn't in this model, just the race_id."
-      columns:
-          - name: constructor_results_id
-            description: "The primary key for this table, result has its own id."
-            tests:
-                - unique
-                - not_null
-          - name: race_id
-            description: '{{ doc("race_id_def") }}'
-          - name: constructor_id
-            description: '{{ doc("constructor_id_def") }}'
-          - name: constructor_points
-            description: '{{ doc("constructor_points_def") }}'
-          - name: status
-            description: '{{ doc("constructor_status_def") }}'
-
-    - name: fct_constructor_standings
-      description: "Fact data related to constructor (ie brand) results. This is at a race level but race info isn't in this model, just the race_id."
-      columns:
-          - name: constructor_standings_id
-            description: "The primary key for this table, result has its own id."
-            tests:
-                - unique
-                - not_null
-          - name: race_id
-            description: '{{ doc("race_id_def") }}'
-          - name: constructor_id
-            description: '{{ doc("constructor_id_def") }}'
-          - name: points
-            description: '{{ doc("constructor_points_def") }}'
-          - name: constructor_position
-            description: '{{ doc("constructor_status_def") }}'
-          - name: position_text
-            description: '{{ doc("constructor_points_def") }}'
-          - name: wins
-            description: '{{ doc("constructor_wins_def") }}'
-
     - name: dim_constructors
       description: "Dimensional data for the constructors (teams)."
       columns:
@@ -82,27 +44,6 @@ models:
             description: '{{ doc("constructor_name_def") }}'
           - name: constructor_nationality
             description: '{{ doc("constructor_nationality_def") }}'
-
-    - name: fct_driver_standings
-      description: "Fact data for driver standings by race."
-      columns:
-          - name: driver_standings_id
-            description: "The primary key for this table."
-            tests:
-                - unique
-                - not_null
-          - name: race_id
-            description: '{{ doc("race_id_def") }}'
-          - name: driver_id
-            description: '{{ doc("driver_id_def") }}'
-          - name: driver_points
-            description: '{{ doc("driver_points_def") }}'
-          - name: driver_position
-            description: '{{ doc("driver_position_def") }}'
-          - name: position_text
-            description: '{{ doc("position_text_def") }}'
-          - name: driver_wins
-            description: '{{ doc("driver_wins_def") }}'
 
     - name: dim_drivers
       description: "Dimensional model stage for driver attributes."
@@ -174,31 +115,6 @@ models:
             description: '{{ doc("pit_stop_duration_def") }}'
           - name: pit_stop_milliseconds
             description: '{{ doc("pit_stop_milliseconds_def") }}'  
-
-    - name: fct_qualifying
-      description: "Fact data around qualifying times."
-      columns:
-          - name: qualifying_id
-            description: "The primary key for this table."
-            tests:
-                - unique
-                - not_null
-          - name: race_id
-            description: '{{ doc("race_id_def") }}'
-          - name: driver_id
-            description: '{{ doc("driver_id_def") }}'
-          - name: constructor_id
-            description: '{{ doc("constructor_id_def") }}'
-          - name: driver_number
-            description: '{{ doc("driver_number_def") }}'
-          - name: qualifying_position
-            description: '{{ doc("qualifying_position_def") }}'
-          - name: q1_time
-            description: '{{ doc("q1_time_def") }}'
-          - name: q2_time
-            description: '{{ doc("q2_time_def") }}'
-          - name: q3_time
-            description: '{{ doc("q3_time_def") }}'
 
     - name: fct_qualifying_pivoted
       description: "Fact data around qualifying times."
@@ -302,57 +218,6 @@ models:
           - name: status_id
             description: '{{ doc("status_id_def") }}'
 
-    - name: dim_seasons
-      description: "Season information"
-      columns:
-          - name: season_year
-            description: "The primary key for this table."
-            tests:
-                - unique
-                - not_null
-          - name: season_url
-            description: "The Wiki URL for F1 Season"
-
-    - name: fct_sprint_results
-      description: "Fact data around qualifying times."
-      columns:
-          - name: result_id
-            description: "The primary key for this table."
-            tests:
-                - unique
-                - not_null
-          - name: race_id
-            description: '{{ doc("race_id_def") }}'
-          - name: driver_id
-            description: '{{ doc("driver_id_def") }}'
-          - name: constructor_id
-            description: '{{ doc("constructor_id_def") }}'
-          - name: driver_number
-            description: '{{ doc("driver_number_def") }}'
-          - name: grid
-            description: '{{ doc("grid_def") }}'
-          - name: driver_position
-            description: '{{ doc("driver_position_def") }}'
-          - name: position_text
-            description: '{{ doc("position_text_def") }}'
-          - name: position_order
-            description: '{{ doc("position_order_def") }}'
-          - name: points
-            description: '{{ doc("points_def") }}'
-          - name: laps
-            description: '{{ doc("laps_def") }}'
-          - name: sprint_time
-            description: '{{ doc("sprint_time_def") }}'
-          - name: milliseconds
-            description: '{{ doc("results_milliseconds_def") }}'
-          - name: fastest_lap
-            description: '{{ doc("fastest_lap_def") }}'
-          - name: fastest_lap_time
-            description: '{{ doc("fastest_lap_time_def") }}'
-          - name: status_id
-            description: '{{ doc("status_id_def") }}'
-
-                
     - name: dim_status
       description: "Status codes mapping."
       columns:
