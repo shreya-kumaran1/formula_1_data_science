@@ -1,0 +1,65 @@
+version: 2
+
+models:
+  - name: ml_data_prep
+    columns:
+      - name: result_id
+        tests:
+          - unique
+          - not_null
+
+  - name: encoding_mapping
+    columns:
+      - name: original_driver_value
+        tests:
+          - unique
+          - not_null
+      - name: encoded_driver_value
+        tests:
+          - unique
+          - not_null
+
+  - name: covariate_encoding
+    columns:
+      - name: position_label
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3]
+
+  - name: hold_out_dataset_for_prediction
+    columns:
+      - name: position_label
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3]
+
+  - name: training_testing_dataset
+    columns:
+      - name: position_label
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3]
+
+  - name: train_model_to_predict_position
+    columns:
+      - name: dataset_type
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['train', 'test']
+
+  - name: apply_prediction_to_position
+    columns:
+      - name: position_predicted
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3]
