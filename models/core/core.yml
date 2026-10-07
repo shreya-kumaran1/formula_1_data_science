@@ -116,19 +116,6 @@ models:
           - name: pit_stop_milliseconds
             description: '{{ doc("pit_stop_milliseconds_def") }}'  
 
-    - name: fct_qualifying_pivoted
-      description: "Fact data around qualifying times."
-      columns:
-          - name: qualifying_pivoted_id
-            description: "The primary key for this table."
-            tests:
-                - unique
-                - not_null
-          - name: qualifying_round
-            description: "The round of qualifying, must be distinct values 1, 2 or 3."
-            tests:
-                - accepted_values:
-                    values: ['1', '2', '3']
 
     - name: dim_races
       description: "Dimensional data around race events."

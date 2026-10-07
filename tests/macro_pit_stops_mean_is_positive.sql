@@ -7,4 +7,4 @@
 }}
 
 
-{{ test_all_values_gte_zero('fastest_pit_stops_by_constructor', 'mean') }}
+{{ test_all_values_gte_zero('agg_fastest_pit_stops_by_constructor', 'mean') }}
