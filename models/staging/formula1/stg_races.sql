@@ -8,13 +8,13 @@ races  as (
 
 renamed as (
     select 
-        race_id as race_id,
-        "YEAR" as race_year, 
+        raceid as race_id,
+        "YEAR" as race_year,
         "ROUND" as race_round,
-        circuit_id as circuit_id,
+        circuitid as circuit_id,
         name as race_name,
         "DATE" as race_date,
-        "TIME" as race_time, 
+        "TIME" as race_time,
         url as race_url,
         fp1_date,
         fp1_time,
