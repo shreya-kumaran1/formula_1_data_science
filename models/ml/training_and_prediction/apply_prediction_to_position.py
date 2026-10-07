@@ -56,8 +56,8 @@ def register_udf_for_prediction(p_predictor ,p_session ,p_dbt):
    )
    return predict_position_udf
 
-def download_models_and_libs_from_stage(p_session):
-   p_session.file.get(f'@{DB_STAGE}/{model_file_path}/{model_file_packaged}', DOWNLOAD_DIR)
+def download_models_and_libs_from_stage(p_session, p_stage_name):
+   p_session.file.get(f'@{p_stage_name}/{model_file_path}/{model_file_packaged}', DOWNLOAD_DIR)
   
 def load_model(p_session):
    # Load the model and initialize the predictor
@@ -73,8 +73,9 @@ def model(dbt, session):
        tags = "predict",
        use_anonymous_sproc=True
    )
+   stage_name = f"{dbt.this.database}.{dbt.this.schema}.{DB_STAGE}"
    session._use_scoped_temp_objects = False
-   download_models_and_libs_from_stage(session)
+   download_models_and_libs_from_stage(session, stage_name)
    predictor = load_model(session)
    predict_position_udf = register_udf_for_prediction(predictor, session ,dbt)
   

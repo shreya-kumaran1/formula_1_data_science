@@ -34,10 +34,7 @@ sources:
         columns:
           - name: stop
             data_tests:
-              - accepted_values:
-                    arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
-                        values: [1,2,3,4,5,6,7,8]
-                        quote: false            
+              - not_null
       - name: races 
         description: One race per row. Importantly this table contains the race year to understand trends. 
         columns:

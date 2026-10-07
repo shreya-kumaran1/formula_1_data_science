@@ -24,8 +24,11 @@ def model(dbt, session):
        materialized = "table",
        tags = "train"
    )
+   stage_name = f"{dbt.this.database}.{dbt.this.schema}.MODELSTAGE"
+   stage_path = f"@{stage_name}"
+
    # Create a stage in Snowflake to save our model file
-   session.sql('create or replace stage MODELSTAGE').collect()
+   session.sql(f'create or replace stage {stage_name}').collect()
   
    #session._use_scoped_temp_objects = False
    version = "1.0"
@@ -57,8 +60,8 @@ def model(dbt, session):
    balanced_accuracy =  balanced_accuracy_score(y_test, predictions)
 
    # Save the model to a stage
-   save_file(session, model, "@MODELSTAGE/driver_position_"+version, "driver_position_"+version+".joblib" )
-   logger.info('Model artifact:' + "@MODELSTAGE/driver_position_"+version+".joblib")
+   save_file(session, model, f"{stage_path}/driver_position_"+version, "driver_position_"+version+".joblib" )
+   logger.info('Model artifact:' + f"{stage_path}/driver_position_"+version+".joblib")
   
    # Take our pandas training and testing dataframes and put them back into snowpark dataframes
    snowpark_train_df = session.write_pandas(pd.concat(train, axis=1, join='inner'), "train_table", auto_create_table=True, create_temp_table=True)
